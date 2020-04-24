@@ -70,6 +70,51 @@ and access to `http://localhost:3000` on your browser
 
 ## Heroku settings
 
+### Create app
+
+```bash
+heroku create liff-kintone-questionary
+Creating ⬢ liff-kintone-questionary... done
+https://liff-kintone-questionary.herokuapp.com/ | https://git.heroku.com/liff-kintone-questionary.git
+```
+
+### Configure heroku
+
+```bash
+heroku config:set NPM_CONFIG_PRODUCTION=false
+heroku config:set HOST=0.0.0.0
+heroku config:set NODE_ENV=production
+```
+
+Add app settings
+
+```bash
+heroku config:set USE_VCONSOLE=true
+heroku config:set SKIP_LOGIN=true
+heroku config:set LIFF_ID=XXXXXX-XXXXXX
+```
 
 
+```bash
+heroku buildpacks:set heroku/nodejs
+Buildpack set. Next release on liff-kintone-questionary will use heroku/nodejs.
+Run git push heroku master to create a new release using this buildpack.
+```
 
+```bash
+heroku config:set API_URL=$(heroku info -s | grep web_url | cut -d= -f2)
+```
+
+```bash
+heroku plugins:install heroku-config
+Installing plugin heroku-config... installed v1.5.4
+
+heroku config:push
+Successfully wrote settings to Heroku!
+```
+
+Deploy to heroku
+
+```bash
+git push heroku master
+```
