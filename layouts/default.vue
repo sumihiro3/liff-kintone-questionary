@@ -6,9 +6,9 @@
       b-navbar-toggle(target="nav-collapse")
       b-collapse(id="nav-collapse" is-nav)
         b-navbar-nav
-          b-nav-item(href="#")
+          b-nav-item(href="https://linecorp.com/ja/" target="_blank")
             | LINE
-          b-nav-item(href="#")
+          b-nav-item(href="https://kintone.cybozu.co.jp/" target="_blank")
             | kintone
     b-row.p-4
       | &nbsp;

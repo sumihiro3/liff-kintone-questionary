@@ -1,5 +1,27 @@
 <template lang="pug">
   b-container.m-0.p-0(fluid)
+    b-form-row.mt-2.mb-4.justify-content-center
+      b-img.mr-2(
+        src="/images/logo_line.png"
+        alt="LINE"
+        width="96px"
+        height="96px"
+      )
+      b-img.ml-2(
+        src="/images/logo_kintone.png"
+        alt="kintone"
+        width="136px"
+        height="96px"
+      )
+    b-form-row.mb-2
+      div.text-muted.small
+        | この調査はLINE およびkintone による協力のもと、LINE Developer Community が実施しています。みなさまの勤務状況をお聞きし、リモートワークの実践状況を集計することを目的に実施しています。ご協力をお願いいたします。
+    b-form-row.m-3
+      hr(
+        size="50"
+        width="100%"
+        color="primary" noshade
+      )
     b-form-row.mt-3
       b-form-group(
         id="form-group-select-industory"
@@ -88,7 +110,7 @@
         :disabled="!readyToSendFormData"
         block
       )
-        | Send
+        | この回答を送信する
     //- Selected values
     b-form-row.mt-3
       div
