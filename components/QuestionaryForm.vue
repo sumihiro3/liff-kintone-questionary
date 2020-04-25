@@ -83,7 +83,11 @@
           max-rows="6"
         )
     b-form-row.mt-3
-      b-button.m-4(variant="secondary" block)
+      b-button.m-4(
+        variant="secondary"
+        :disabled="!readyToSendFormData"
+        block
+      )
         | Send
     //- Selected values
     b-form-row.mt-3
@@ -140,6 +144,20 @@ export default {
         '休暇'
       ],
       InTroubles: ['食事', '通院', '健康', '育児', '仕事', '介護', 'その他']
+    }
+  },
+  computed: {
+    readyToSendFormData() {
+      let result = false
+      if (
+        this.formSlected.industry &&
+        this.formSlected.employmentStatus &&
+        this.formSlected.workSystem &&
+        this.formSlected.troubles.length > 0
+      ) {
+        result = true
+      }
+      return result
     }
   },
   mounted() {}
