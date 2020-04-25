@@ -1,21 +1,19 @@
 <template lang="pug">
-  v-app
-    v-app-bar(fixed app color="primary")
-      v-toolbar-title.white--text.font-weight-black(v-text="title")
-      v-spacer
-    v-content
-      v-container
-        nuxt
-      //- Progress Circle
-      v-overlay(:value="showProgressCircle" style="z-index:9999")
-        v-progress-circular(
-          :size="64"
-          color="accent"
-          indeterminate
-        )
-    v-footer(:fixed="fixed" app)
-      span
-        | &copy; {{ new Date().getFullYear() }} LINE Developer Community
+  div(fluid)
+    div
+      b-navbar(toggleable="lg" type="dark" variant="primary")
+        b-navbar-brand(href="#")
+          | {{ title }}
+        b-navbar-toggle(target="nav-collapse")
+        b-collapse(id="nav-collapse" is-nav)
+          b-navbar-nav
+            b-nav-item(href="#")
+              | LINE
+            b-nav-item(href="#")
+              | kintone
+    div
+      nuxt
+      b-overlay(:show="showProgressCircle" z-index="9999" blur="2" no-wrap)
 </template>
 
 <script>
@@ -57,3 +55,5 @@ export default {
   }
 }
 </script>
+
+<style></style>

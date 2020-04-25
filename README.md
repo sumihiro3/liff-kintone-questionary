@@ -32,11 +32,11 @@ npx create-nuxt-app
 create-nuxt-app v2.15.0
 ✨  Generating Nuxt.js project in .
 ? Project name liff-kintone-questionary
-? Project description My brilliant Nuxt.js project
+? Project description My divine Nuxt.js project
 ? Author name sumihiro3
 ? Choose programming language JavaScript
 ? Choose the package manager Yarn
-? Choose UI framework Vuetify.js
+? Choose UI framework Bootstrap Vue
 ? Choose custom server framework Express
 ? Choose Nuxt.js modules Axios, Progressive Web App (PWA) Support, DotEnv
 ? Choose linting tools ESLint, Prettier
