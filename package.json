@@ -1,7 +1,7 @@
 {
   "name": "liff-kintone-questionary",
   "version": "1.0.0",
-  "description": "My divine Nuxt.js project",
+  "description": "【オンライン開催】新型コロナの状況確認アンケートフォームのようなものを作ってみましょう",
   "author": "sumihiro3",
   "private": true,
   "scripts": {

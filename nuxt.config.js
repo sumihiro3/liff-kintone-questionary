@@ -4,7 +4,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'LINE x kintone',
+    title: 'LINE × kintoneでアンケートシステムを作ってみよう！',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -16,15 +16,19 @@ module.exports = {
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: 'LINE x kintone'
+        content: 'LINE × kintoneでアンケートシステムを作ってみよう！'
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://linepaydrinkbar.an.r.appspot.com'
+        content: 'https://liff-kintone-questionary.herokuapp.com/'
       },
-      { hid: 'og:title', property: 'og:title', content: 'LINE x kintone' },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'LINE × kintoneでアンケートシステムを作ってみよう！'
+      },
       {
         hid: 'og:description',
         property: 'og:description',
@@ -33,7 +37,8 @@ module.exports = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://linepaydrinkbar.an.r.appspot.com/images/icon.png'
+        content:
+          'https://connpass-tokyo.s3.amazonaws.com/thumbs/a1/87/a18739cba0816d05def0eca57fdc59bb.png'
       }
     ],
     script: [
