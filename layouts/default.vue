@@ -10,7 +10,9 @@
             | LINE
           b-nav-item(href="#")
             | kintone
-    b-row.pt-2.pb-8.ml-2.mr-2
+    b-row.p-4
+      | &nbsp;
+    b-row
       nuxt
       b-overlay(:show="showProgressCircle" z-index="9999" blur="2" no-wrap)
     b-row.p-4

@@ -1,7 +1,7 @@
 <template lang="pug">
   b-container(fluid)
-    h1
-      | {{ response }}
+    //- h1
+    //-   | {{ response }}
     questionary-form
 </template>
 
