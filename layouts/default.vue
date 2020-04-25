@@ -1,7 +1,7 @@
 <template lang="pug">
   div(fluid)
-    div
-      b-navbar(toggleable="lg" type="dark" variant="primary")
+    b-row
+      b-navbar(toggleable="lg" type="dark" variant="primary" fixed="top")
         b-navbar-brand(href="#")
           | {{ title }}
         b-navbar-toggle(target="nav-collapse")
@@ -11,9 +11,15 @@
               | LINE
             b-nav-item(href="#")
               | kintone
-    div
+    b-row.pt-2.pb-8.ml-2.mr-2
       nuxt
       b-overlay(:show="showProgressCircle" z-index="9999" blur="2" no-wrap)
+    b-row.p-4
+      | &nbsp;
+    b-row
+      b-navbar(toggleable="sm" type="dark" variant="secondary" fixed="bottom")
+        small.text-light
+          | &copy; {{ new Date().getFullYear() }} LINE Developer Community
 </template>
 
 <script>

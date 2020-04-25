@@ -56,7 +56,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/axios.js' }],
+  plugins: [
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/bootstrap-vue.js' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
