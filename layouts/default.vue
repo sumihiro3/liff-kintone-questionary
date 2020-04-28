@@ -14,7 +14,14 @@
       | &nbsp;
     b-row
       nuxt
-      b-overlay(:show="showProgressCircle" z-index="9999" blur="2" no-wrap)
+    b-overlay(
+      :show="showProgressCircle"
+      z-index="9999"
+      blur="2"
+      type="grow"
+      spinner-variant="secondary"
+      no-wrap
+    )
     b-row.p-4
       | &nbsp;
     b-navbar(toggleable="lg" type="dark" variant="secondary" fixed="bottom")

@@ -15,7 +15,7 @@
       )
     b-form-row.mb-2
       div.text-muted.small
-        | この調査はLINE およびkintone による協力のもと、LINE Developer Community が実施しています。みなさまの勤務状況をお聞きし、リモートワークの実践状況を集計することを目的に実施しています。ご協力をお願いいたします。
+        | この調査はLINE およびkintone による協力のもと、LINE Developer Community が実施しています。みなさまの勤務状況をお聞きし、在宅勤務の実践状況を集計することを目的に実施しています。ご協力をお願いいたします。
     b-form-row.m-3
       hr(
         size="50"
@@ -108,6 +108,7 @@
       b-button.m-4(
         variant="secondary"
         :disabled="!readyToSendFormData"
+        @click="sendQuestionaryAnswer"
         block
       )
         | この回答を送信する
@@ -118,6 +119,7 @@
 </template>
 
 <script>
+import consola from 'consola'
 export default {
   components: {
     // Logo
@@ -182,6 +184,11 @@ export default {
       return result
     }
   },
-  mounted() {}
+  methods: {
+    sendQuestionaryAnswer() {
+      consola.log('Answer', this.formSlected)
+      this.$emit('sendQuestionaryAnswer', this.formSlected)
+    }
+  }
 }
 </script>

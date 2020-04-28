@@ -1,8 +1,26 @@
 <template lang="pug">
   b-container(fluid)
-    //- h1
-    //-   | {{ response }}
-    questionary-form
+    div
+      b-toast(
+        id="success-toast"
+        title="Success!"
+        variant="success"
+      )
+        | ご回答有り難うございました！！
+      b-toast(
+        id="failed-toast"
+        title="API Failed"
+        variant="danger"
+      )
+        | {{ addAnswerResult.message }}
+    div(
+      v-if="addAnswerResult.code === '0000'"
+    )
+      | ご回答ありがとうございました！
+    questionary-form(
+      v-else
+      @sendQuestionaryAnswer="sendQuestionaryAnswer"
+    )
 </template>
 
 <script>
@@ -15,9 +33,11 @@ export default {
   },
   data() {
     return {
-      text: '',
-      response: null,
-      selected: null
+      userId: 'user000',
+      addAnswerResult: {
+        code: null,
+        message: null
+      }
     }
   },
   mounted() {
@@ -29,6 +49,24 @@ export default {
       .catch((error) => {
         consola.log(error)
       })
+  },
+  methods: {
+    async sendQuestionaryAnswer(answer) {
+      consola.log('sendQuestionaryAnswer@index.vue called!')
+      consola.log('Answer', answer)
+      const data = {
+        userId: this.userId,
+        answer
+      }
+      const result = await this.$axios.post('/api/questionaryAnswer', data)
+      consola.log('API QuestionaryAnswer result', result)
+      this.addAnswerResult = result.data
+      let toastId = 'failed-toast'
+      if (this.addAnswerResult.code === '0000') {
+        toastId = 'success-toast'
+      }
+      this.$bvToast.show(toastId)
+    }
   }
 }
 </script>

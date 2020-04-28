@@ -1,3 +1,8 @@
+// load env values from .env file when app is not production mode
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 module.exports = {
   mode: 'universal',
   /*
@@ -80,15 +85,25 @@ module.exports = {
     ['bootstrap-vue/nuxt', { css: false }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
+    // ,
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    // '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  env: {
+    API_BASE_URL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+    USE_VCONSOLE: process.env.USE_VCONSOLE || false,
+    SKIP_LOGIN: process.env.SKIP_LOGIN || false,
+    LIFF_ID: process.env.LIFF_ID || '',
+    KINTONE_APP_API_TOKEN: process.env.KINTONE_APP_API_TOKEN || '',
+    KINTONE_APP_DOMAIN: process.env.KINTONE_APP_DOMAIN || '',
+    KINTONE_APP_ID: process.env.KINTONE_APP_ID || ''
+  },
   /*
    ** Build configuration
    */
