@@ -17,6 +17,13 @@
       v-if="addAnswerResult.code === '0000'"
     )
       | ご回答ありがとうございました！
+      div.m-4
+        b-button(
+        variant="secondary"
+        @click="answerAgain"
+        block
+      )
+          | もう一度回答する
     questionary-form(
       v-else
       @sendQuestionaryAnswer="sendQuestionaryAnswer"
@@ -75,6 +82,10 @@ export default {
       }
       this.$store.dispatch('progressCircleOff')
       this.$bvToast.show(toastId)
+    },
+    answerAgain() {
+      this.addAnswerResult.message = null
+      this.addAnswerResult.code = null
     }
   }
 }
