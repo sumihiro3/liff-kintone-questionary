@@ -15,7 +15,7 @@ let lineApiClient
 const followMessage = JSON.parse(
   fs.readFileSync('./server/followMessage.json', 'utf8')
 )
-consola.info('followMessage', followMessage)
+consola.info('follow Flex Message', followMessage)
 
 router.post('/webhook', line.middleware(lineConfig), (req, res) => {
   consola.log('Bot webhook called!')
