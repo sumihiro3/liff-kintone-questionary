@@ -26,6 +26,7 @@
 <script>
 import consola from 'consola'
 import QuestionaryForm from '~/components/QuestionaryForm'
+import getLineUserId from '~/utils/liff'
 
 export default {
   components: {
@@ -33,29 +34,33 @@ export default {
   },
   data() {
     return {
-      userId: 'user000',
+      lineUserId: 'dummyUser',
       addAnswerResult: {
         code: null,
         message: null
       }
     }
   },
-  mounted() {
-    this.$axios
-      .$get('/api/test')
-      .then((response) => {
-        this.response = response.test
-      })
-      .catch((error) => {
-        consola.log(error)
-      })
+  async mounted() {
+    const lineUserId = await getLineUserId()
+    if (!lineUserId) {
+      if (process.env.SKIP_LOGIN === 'true') {
+        consola.warn('Skip LINE Login because of SKIP_LOGIN is set.')
+      } else {
+        consola.log('Need to login!')
+        // eslint-disable-next-line no-undef
+        liff.login()
+      }
+    } else {
+      this.lineUserId = lineUserId
+    }
   },
   methods: {
     async sendQuestionaryAnswer(answer) {
       consola.log('sendQuestionaryAnswer@index.vue called!')
       consola.log('Answer', answer)
       const data = {
-        userId: this.userId,
+        userId: this.lineUserId,
         answer
       }
       const result = await this.$axios.post('/api/questionaryAnswer', data)
@@ -70,5 +75,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

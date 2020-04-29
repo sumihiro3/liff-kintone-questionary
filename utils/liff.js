@@ -11,6 +11,10 @@ function getLineUserId() {
         consola.log('LIFF initialized!')
         const context = await liff.getContext()
         consola.info('LIFF Context', context)
+        if (!context) {
+          consola.warn('Could not get context. Need to login!')
+          resolve(null)
+        }
         const lineUserId = context.userId
         consola.info('LINE USER ID', lineUserId)
         resolve(lineUserId)

@@ -94,12 +94,18 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+    browserBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000'
+  },
   env: {
     API_BASE_URL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
     USE_VCONSOLE: process.env.USE_VCONSOLE || false,
     SKIP_LOGIN: process.env.SKIP_LOGIN || false,
     LIFF_ID: process.env.LIFF_ID || '',
+    LINE_BOT_CHANNEL_ACCESS_TOKEN:
+      process.env.LINE_BOT_CHANNEL_ACCESS_TOKEN || '',
+    LINE_BOT_CHANNEL_SECRET: process.env.LINE_BOT_CHANNEL_SECRET || '',
     KINTONE_APP_API_TOKEN: process.env.KINTONE_APP_API_TOKEN || '',
     KINTONE_APP_DOMAIN: process.env.KINTONE_APP_DOMAIN || '',
     KINTONE_APP_ID: process.env.KINTONE_APP_ID || ''
