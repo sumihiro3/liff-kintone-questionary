@@ -95,11 +95,11 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
-    browserBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000'
+    baseURL: process.env.API_URL || 'http://127.0.0.1:3000',
+    browserBaseURL: process.env.API_URL || 'http://127.0.0.1:3000'
   },
   env: {
-    API_BASE_URL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+    API_URL: process.env.API_URL || 'http://127.0.0.1:3000',
     USE_VCONSOLE: process.env.USE_VCONSOLE || false,
     SKIP_LOGIN: process.env.SKIP_LOGIN || false,
     LIFF_ID: process.env.LIFF_ID || '',

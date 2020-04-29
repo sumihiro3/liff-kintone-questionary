@@ -12,7 +12,7 @@ config.dev = process.env.NODE_ENV !== 'production'
 // Show environment values
 consola.log('NODE_ENV', process.env.NODE_ENV)
 consola.log('BASE_URL', process.env.BASE_URL)
-consola.log('API_BASE_URL', process.env.API_BASE_URL)
+consola.log('API_URL', process.env.API_URL)
 consola.log('USE_VCONSOLE', process.env.USE_VCONSOLE)
 consola.log('SKIP_LOGIN', process.env.SKIP_LOGIN)
 consola.log('LIFF_ID', process.env.LIFF_ID)
