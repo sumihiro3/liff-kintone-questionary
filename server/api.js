@@ -1,9 +1,12 @@
 const consola = require('consola')
 const Router = require('express-promise-router')
+const bodyParser = require('body-parser')
 const kintone = require('@kintone/kintone-js-sdk')
 
 // Express router
 const router = new Router()
+router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.json())
 
 // Kintone Settings
 const KINTONE_APP_API_TOKEN = process.env.KINTONE_APP_API_TOKEN
@@ -59,7 +62,7 @@ router.post('/questionaryAnswer', async (req, res) => {
   }
 })
 
-// for test
+// for UI test
 router.post('/questionaryAnswerFailed', (req, res) => {
   consola.log('POST questionaryAnswerFailed called!')
   const apiResult = {
