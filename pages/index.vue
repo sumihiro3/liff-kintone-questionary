@@ -42,6 +42,7 @@ export default {
     }
   },
   async mounted() {
+    this.$store.dispatch('progressCircleOn')
     const lineUserId = await getLineUserId()
     if (!lineUserId) {
       if (process.env.SKIP_LOGIN === 'true') {
@@ -54,10 +55,12 @@ export default {
     } else {
       this.lineUserId = lineUserId
     }
+    this.$store.dispatch('progressCircleOff')
   },
   methods: {
     async sendQuestionaryAnswer(answer) {
       consola.log('sendQuestionaryAnswer@index.vue called!')
+      this.$store.dispatch('progressCircleOn')
       consola.log('Answer', answer)
       const data = {
         userId: this.lineUserId,
@@ -70,6 +73,7 @@ export default {
       if (this.addAnswerResult.code === '0000') {
         toastId = 'success-toast'
       }
+      this.$store.dispatch('progressCircleOff')
       this.$bvToast.show(toastId)
     }
   }
