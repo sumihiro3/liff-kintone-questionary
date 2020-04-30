@@ -42,8 +42,7 @@ module.exports = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content:
-          'https://connpass-tokyo.s3.amazonaws.com/thumbs/a1/87/a18739cba0816d05def0eca57fdc59bb.png'
+        content: 'https://liff-kintone-questionary.herokuapp.com/icon.png'
       }
     ],
     script: [
@@ -54,6 +53,16 @@ module.exports = {
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+  },
+  // PWA Setting
+  manifest: {
+    name: 'LINE x kintone アンケートシステム',
+    lang: 'ja',
+    short_name: 'LINE x kintone アンケート',
+    title: 'LINE x kintone アンケートシステム',
+    description: 'LINE × kintoneでアンケートシステムを作ってみよう！',
+    theme_color: '#ffffff',
+    background_color: '#ffffff'
   },
   /*
    ** Customize the progress-bar color
