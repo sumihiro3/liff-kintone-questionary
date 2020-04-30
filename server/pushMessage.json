@@ -1,0 +1,74 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://liff-kintone-questionary.herokuapp.com/images/logo_line.png",
+        "margin": "none"
+      },
+      {
+        "type": "image",
+        "url": "https://liff-kintone-questionary.herokuapp.com/images/logo_kintone.png",
+        "margin": "none"
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "<title>",
+        "weight": "bold",
+        "size": "xl",
+        "align": "center"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "<body>",
+            "size": "sm",
+            "margin": "md",
+            "flex": 0,
+            "wrap": true
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "もう一度アンケートに回答する",
+          "uri": "https://liff.line.me/1654153012-R37JOVEN"
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#f4f4f4"
+    }
+  }
+}

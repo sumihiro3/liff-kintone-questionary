@@ -1,6 +1,8 @@
+const fs = require('fs')
 const consola = require('consola')
 const Router = require('express-promise-router')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const kintone = require('@kintone/kintone-js-sdk')
 
 // Express router
@@ -25,17 +27,82 @@ const connectionParams = {
 const kintoneConnection = new kintone.Connection(connectionParams)
 const kintoneAppId = KINTONE_APP_ID
 
+// Message template
+const pushMessage = JSON.parse(
+  fs.readFileSync('./server/pushMessage.json', 'utf8')
+)
+consola.info('push Flex Message', pushMessage)
+
+/*
+-------------------------------
+Middleware
+-------------------------------
+*/
+const API_KEY = 'API_KEY_000000000'
+
+const apiKeyChecker = function(req, res, next) {
+  consola.log('apiKeyChecker called!!')
+  consola.log('Request Headers', req.headers)
+  const apiKey = req.headers.authorization
+  if (API_KEY !== apiKey) {
+    res.status(401).json({ message: 'Auth failed...' })
+  } else {
+    // Pass authorization
+    next()
+  }
+}
+
 /*
 -------------------------------
 APIs
 -------------------------------
 */
 
-router.get('/test', (req, res, next) => {
+router.get('/test', cors(), apiKeyChecker, (req, res, next) => {
   const param = { test: 'success' }
   res.header('Content-Type', 'application/json; charset=utf-8')
   res.send(param)
 })
+
+router.post(
+  '/sendMulticastMessage',
+  cors(),
+  apiKeyChecker,
+  async (req, res) => {
+    consola.log('POST sendMulticastMessage called!')
+    const data = req.body
+    consola.log('Received Data', data)
+    const userIds = data.userIds
+    const messageTitle = data.message.title
+    const messageBody = data.message.body
+    const message = generatePushMessage(messageTitle, messageBody)
+    try {
+      const lineApiClient = req.app.locals.lineApiClient
+      await lineApiClient.multicast(userIds, message)
+      res.status(200).json({
+        code: 'OK',
+        message: 'Success!!!!'
+      })
+    } catch (error) {
+      consola.error('Error in multicast', error)
+      res.status(400).json({
+        code: 'NG',
+        message: 'Bad Request...'
+      })
+    }
+  }
+)
+
+function generatePushMessage(title, body) {
+  const msg = JSON.parse(JSON.stringify(pushMessage))
+  msg.body.contents[0].text = title
+  msg.body.contents[1].contents[0].text = body
+  return {
+    type: 'flex',
+    altText: title,
+    contents: msg
+  }
+}
 
 router.post('/questionaryAnswer', async (req, res) => {
   consola.log('POST questionaryAnswer called!')
