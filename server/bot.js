@@ -59,10 +59,15 @@ function handleEvent(event) {
 }
 
 function generateFollowMessage(text) {
+  const msg = JSON.parse(JSON.stringify(followMessage))
+  // Overwrite LIFF URL
+  const liffUrl = `https://liff.line.me/${process.env.LIFF_ID}`
+  consola.info('LIFF URL', liffUrl)
+  msg.footer.contents[0].action.uri = liffUrl
   return {
     type: 'flex',
     altText: text,
-    contents: followMessage
+    contents: msg
   }
 }
 

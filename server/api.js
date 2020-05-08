@@ -31,7 +31,7 @@ const kintoneAppId = KINTONE_APP_ID
 const pushMessage = JSON.parse(
   fs.readFileSync('./server/pushMessage.json', 'utf8')
 )
-consola.info('push Flex Message', pushMessage)
+// consola.info('push Flex Message', pushMessage)
 
 /*
 -------------------------------
@@ -97,6 +97,10 @@ function generatePushMessage(title, body) {
   const msg = JSON.parse(JSON.stringify(pushMessage))
   msg.body.contents[0].text = title
   msg.body.contents[1].contents[0].text = body
+  // Overwrite LIFF URL
+  const liffUrl = `https://liff.line.me/${process.env.LIFF_ID}`
+  consola.info('LIFF URL', liffUrl)
+  msg.footer.contents[0].action.uri = liffUrl
   return {
     type: 'flex',
     altText: title,
