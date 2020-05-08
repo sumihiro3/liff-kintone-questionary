@@ -102,7 +102,7 @@ export default {
     },
     shareApp() {
       consola.log('shareApp called!')
-      // this.launchShareTargetPicker()
+      this.launchShareTargetPicker()
     },
     launchShareTargetPicker() {
       consola.log('launchShareTargetPicker called!')
