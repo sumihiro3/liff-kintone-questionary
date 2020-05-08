@@ -1,0 +1,75 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://liff-kintone-questionary.herokuapp.com/images/logo_line.png",
+        "margin": "none"
+      },
+      {
+        "type": "image",
+        "url": "https://liff-kintone-questionary.herokuapp.com/images/logo_kintone.png",
+        "margin": "none"
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "在宅勤務アンケート",
+        "weight": "bold",
+        "size": "xl",
+        "align": "center"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "この調査はLINE およびkintone による協力のもと、LINE Developer Community が実施しています。みなさまの勤務状況をお聞きし、在宅勤務の実践状況を集計することを目的に実施しています。ご協力をお願いいたします。",
+            "size": "sm",
+            "color": "#999999",
+            "margin": "md",
+            "flex": 0,
+            "wrap": true
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "アンケートに回答する",
+          "uri": "https://google.co.jp"
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#f4f4f4"
+    }
+  }
+}

@@ -17,12 +17,23 @@
       v-if="addAnswerResult.code === '0000'"
     )
       | ご回答ありがとうございました！
+      //- ShareTargetPicker
       div.m-4
         b-button(
-        variant="secondary"
-        @click="answerAgain"
-        block
-      )
+          variant="info"
+          @click="shareApp"
+          block
+        )
+          b-icon.mr-2(icon="box-arrow-up" aria-hidden="true")
+          | Share
+      //- Answer again
+      div.m-4
+        b-button(
+          variant="secondary"
+          @click="answerAgain"
+          block
+        )
+          b-icon.mr-2(icon="arrow-repeat" aria-hidden="true")
           | もう一度回答する
     questionary-form(
       v-else
@@ -34,6 +45,7 @@
 import consola from 'consola'
 import QuestionaryForm from '~/components/QuestionaryForm'
 import getLineUserId from '~/utils/liff'
+import shareMessage from '~/assets/shareMessage.json'
 
 export default {
   components: {
@@ -84,8 +96,38 @@ export default {
       this.$bvToast.show(toastId)
     },
     answerAgain() {
+      consola.log('answerAgain called!')
       this.addAnswerResult.message = null
       this.addAnswerResult.code = null
+    },
+    shareApp() {
+      consola.log('shareApp called!')
+      // this.launchShareTargetPicker()
+    },
+    launchShareTargetPicker() {
+      consola.log('launchShareTargetPicker called!')
+      // eslint-disable-next-line no-undef
+      if (liff.isApiAvailable('shareTargetPicker')) {
+        const msg = JSON.parse(JSON.stringify(shareMessage))
+        // Overwrite LIFF URL
+        const liffUrl = `https://liff.line.me/${process.env.LIFF_ID}`
+        consola.info('LIFF URL', liffUrl)
+        msg.footer.contents[0].action.uri = liffUrl
+        consola.log('Share message', msg)
+        // eslint-disable-next-line no-undef
+        liff
+          .shareTargetPicker([
+            {
+              type: 'flex',
+              altText: '在宅勤務アンケート',
+              contents: msg
+            }
+          ])
+          .then(consola.log('ShareTargetPicker was launched'))
+          .catch(function(res) {
+            consola.log('Failed to launch ShareTargetPicker')
+          })
+      }
     }
   }
 }
