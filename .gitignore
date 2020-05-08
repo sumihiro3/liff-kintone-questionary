@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# localhost pem
+localhost*.pem

@@ -1,5 +1,4 @@
 const express = require('express')
-// const bodyParser = require('body-parser')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const line = require('@line/bot-sdk')
@@ -47,8 +46,6 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
-  // app.use(bodyParser.urlencoded({ extended: true }))
-  // app.use(bodyParser.json())
   app.use('/api', apiRouter)
   app.use('/bot', botRouter)
 
@@ -56,10 +53,26 @@ async function start() {
   app.use(nuxt.render)
 
   // Listen the server
-  app.listen(port, host)
-  consola.ready({
-    message: `Server listening on http://${host}:${port}`,
-    badge: true
-  })
+  if (process.env.NODE_ENV === 'development') {
+    // enable HTTPS on localhost when development mode
+    const fs = require('fs')
+    const https = require('https')
+    // https config
+    const httpsOptions = {
+      key: fs.readFileSync(`${__dirname}/localhost-key.pem`),
+      cert: fs.readFileSync(`${__dirname}/localhost.pem`)
+    }
+    https.createServer(httpsOptions, app).listen(port, host)
+    consola.ready({
+      message: `Server listening on https://${host}:${port}`,
+      badge: true
+    })
+  } else {
+    app.listen(port, host)
+    consola.ready({
+      message: `Server listening on http://${host}:${port}`,
+      badge: true
+    })
+  }
 }
 start()
